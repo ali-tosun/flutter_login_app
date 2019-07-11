@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_login_app/Blocs/Movie/bloc.dart';
-import 'package:flutter_login_app/Blocs/bloc.dart';
+import 'package:flutter_login_app/Blocs/Movie/AllMovie/bloc.dart';
+import 'package:flutter_login_app/Blocs/Profile/bloc.dart';
+import 'package:flutter_login_app/Blocs/Profile/profile_bloc.dart';
+import 'package:flutter_login_app/Blocs/Sign_In/bloc.dart';
 import 'package:flutter_login_app/Models/User/User.dart';
 import 'package:flutter_login_app/Widget/profile.dart';
 
@@ -9,6 +11,9 @@ import 'card_widget/movie_row.dart';
 
 class AuthPage extends StatefulWidget {
   User user;
+  String isProfileLoading;
+
+  AuthPage({this.isProfileLoading});
 
   @override
   AuthPageState createState() => new AuthPageState();
@@ -18,11 +23,24 @@ class AuthPageState extends State<AuthPage>
     with SingleTickerProviderStateMixin {
   int bottomNavigationBarIndex = 0;
   TabController controller;
+  bool firstLoading=true;
+
 
   @override
   void initState() {
+
     // TODO: implement initState
+
     super.initState();
+
+    if(firstLoading){
+      var movieBloc = BlocProvider.of<MovieBloc>(context);
+      movieBloc.dispatch(FetchMovieData());
+      debugPrint("profile datası indiriliyor...");
+      /// TODO BURAYA BAK
+     firstLoading=false;
+    }
+    debugPrint("auth page init state");
   }
 
   @override

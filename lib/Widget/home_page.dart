@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_login_app/Blocs/Movie/bloc.dart';
-import 'package:flutter_login_app/Blocs/Movie/movie_bloc.dart';
-import 'package:flutter_login_app/Blocs/bloc.dart';
+import 'package:flutter_login_app/Blocs/Movie/AllMovie/bloc.dart';
+import 'package:flutter_login_app/Blocs/Movie/AllMovie/movie_bloc.dart';
+import 'package:flutter_login_app/Blocs/Profile/profile_bloc.dart';
+import 'package:flutter_login_app/Blocs/Profile/profile_event.dart';
+import 'package:flutter_login_app/Blocs/Sign_In/bloc.dart';
 import 'package:flutter_login_app/Widget/sign_in.dart';
 
 import 'auth_page.dart';
@@ -17,6 +19,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SignInBloc>(context);
     final movieBloc= BlocProvider.of<MovieBloc>(context);
+    final profileBloc= BlocProvider.of<ProfileBloc>(context);
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Home Page'),
@@ -33,8 +36,7 @@ class HomePageState extends State<HomePage> {
             );
           }
           if (state is SignInSuccessfulState) {
-            movieBloc.dispatch(FetchMovieData());
-            return AuthPage();
+            return AuthPage(isProfileLoading: "loginpage",);
           }
           if (state is SignInLoadingState) {
             return Center(child: CircularProgressIndicator());

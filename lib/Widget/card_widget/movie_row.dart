@@ -125,6 +125,7 @@ class MovieCardItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 CircleAvatar(
+                  backgroundColor: Colors.brown,
                   child: Text("${movie.imdbScore ?? "7.5"}"),
                 ),
                 SizedBox(

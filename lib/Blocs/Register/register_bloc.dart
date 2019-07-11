@@ -5,6 +5,9 @@ import '../../locator.dart';
 import './bloc.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
+
+
+
   @override
   RegisterState get initialState => InitialRegisterState();
   SignUpRepository signUpRepository = locator<SignUpRepository>();

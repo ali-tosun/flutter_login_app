@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_login_app/Blocs/Movie/bloc.dart';
+import 'package:flutter_login_app/Blocs/Movie/AllMovie/bloc.dart';
 import 'package:flutter_login_app/Blocs/Register/bloc.dart';
-import 'package:flutter_login_app/Blocs/bloc.dart';
+import 'package:flutter_login_app/Blocs/Sign_In/bloc.dart';
 import 'package:flutter_login_app/Widget/auth_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../profile.dart';
 import 'theme.dart' as Theme;
 import 'bubble_indication_painter.dart';
 
@@ -57,12 +58,31 @@ class _LoginPageState extends State<LoginPage>
           if (state is InitialSignInState) {
             return myBody(state: "init");
           } else if (state is SignInSuccessfulState) {
-            movieBloc.dispatch(FetchMovieData());
             return AuthPage();
           } else if (state is SignInLoadingState) {
             return Center(child: CircularProgressIndicator());
           } else if (state is SignInErrorState) {
-            return Center(child: Text("hata.."));
+            // TODO return myBody(state"err");
+            return Center(
+              child: Text("hata"),
+            );
+
+            /*Container(
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    GestureDetector(onTap: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => LoginPage(),),
+                            (Route<dynamic> route) => false,
+                      );
+                    },
+                        child: Text(
+                            "Beklenmeyen bir hata oluştu tekrar denemek için tıklayınız.")),
+                  ],
+                ),
+              ),
+            );*/
           } else if (state is SignInWrongPasswordState) {
             return myBody(state: "err");
           }
@@ -850,9 +870,9 @@ class SignInNewBodyState extends State<SignInNewBody> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(widget.state == "init"){
-      loginEmailController.text ="indind";
-      loginPasswordController.text="indind";
+    if (widget.state == "init") {
+      loginEmailController.text = "indind";
+      loginPasswordController.text = "indind";
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -8,11 +8,14 @@ abstract class MovieState extends Equatable {
 }
 
 class InitialMovieState extends MovieState {}
-class MovieLoadingState extends MovieState{}
-class MovieLoadedState extends MovieState{
+
+class MovieLoadingState extends MovieState {}
+
+class MovieLoadedState extends MovieState {
   List<Movie> movieList;
 
   MovieLoadedState(this.movieList);
-
 }
-class MovieErrorState extends MovieState{}
+
+class MovieErrorState extends MovieState {}
+

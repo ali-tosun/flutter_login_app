@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_login_app/Blocs/sign_in_bloc.dart';
-import 'package:flutter_login_app/Blocs/sign_in_event.dart';
-import 'package:flutter_login_app/Blocs/sign_in_state.dart';
+import 'package:flutter_login_app/Blocs/Sign_In/sign_in_bloc.dart';
+import 'package:flutter_login_app/Blocs/Sign_In/sign_in_event.dart';
+import 'package:flutter_login_app/Blocs/Sign_In/sign_in_state.dart';
 
 import 'register_page.dart';
 

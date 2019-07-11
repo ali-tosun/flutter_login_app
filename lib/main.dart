@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'Blocs/Movie/movie_bloc.dart';
+import 'package:flutter_login_app/Blocs/Movie/AllMovie/movie_bloc.dart';
+import 'Blocs/Movie/AddMovie/addmovie_bloc.dart';
+import 'Blocs/Profile/profile_bloc.dart';
 import 'Blocs/Register/register_bloc.dart';
-import 'Blocs/sign_in_bloc.dart';
+import 'package:flutter_login_app/Blocs/Sign_In/sign_in_bloc.dart';
 import 'Widget/home_page.dart';
 import 'Widget/login_widget/login_page.dart';
 import 'locator.dart';
@@ -31,6 +33,12 @@ class MyAppState extends State<MyApp> {
         ),
         BlocProvider<MovieBloc>(
           builder: (context) => MovieBloc(),
+        ),
+        BlocProvider<AddmovieBloc>(
+          builder: (context) => AddmovieBloc(),
+        ),
+        BlocProvider<ProfileBloc>(
+          builder: (context) => ProfileBloc(),
         ),
       ],
       child: MaterialApp(

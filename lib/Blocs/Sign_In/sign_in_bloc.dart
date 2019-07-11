@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_login_app/Models/User/User.dart';
 import 'package:flutter_login_app/Repository/sign_in.dart';
-import '../locator.dart';
-import './bloc.dart';
+import '../../locator.dart';
+import 'package:flutter_login_app/Blocs/Sign_In/bloc.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   User _user;
@@ -30,10 +30,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         yield SignInLoadingState();
         User responseUser = await signInRepository.signIn(
             username: event.userName, password: event.password);
-        user=responseUser;
-        if (user != null) {
+        if (responseUser != null) {
+
+          //kimlik doğrulama başarılı ise
+          user=responseUser;
           debugPrint(user.toString()+"alix");
-          //kimlik doğrulama başarılı is
           yield SignInSuccessfulState(user);
         } else {
           //kimlik doğrulama başarısız ise başlangıç state.
